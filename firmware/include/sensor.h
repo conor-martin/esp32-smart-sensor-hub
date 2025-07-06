@@ -1,14 +1,14 @@
+// include/sensor.h
+
 #ifndef SENSOR_H
 #define SENSOR_H
 
-#include <Arduino.h>
-
 struct SensorData {
-    bool motionDetected;
-    float temperature;
-    float humidity;
-    float pressure;
-    float lightLevel;
+    bool motionDetected = false;
+    float temperature = 0.0f;
+    float humidity = 0.0f;
+    float pressure = 0.0f;
+    float lightLevel = 0.0f;
 };
 
 namespace sensor {
