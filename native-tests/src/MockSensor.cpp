@@ -1,13 +1,13 @@
 #include "MockSensor.h"
 
 void MockSensor::init() {
-    // No-op for tests
+    // No-op for mock
 }
 
 SensorData MockSensor::read() {
-    return mockData;
+    return data;
 }
 
-void MockSensor::setTestData(const SensorData& data) {
-    mockData = data;
+void MockSensor::setTestData(const SensorData& testData) {
+    data = testData;
 }

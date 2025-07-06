@@ -1,16 +1,20 @@
 #ifndef MOCKSENSOR_H
 #define MOCKSENSOR_H
 
-#include "sensor.h"
+#include "SensorData.h"
+#include "interfaces/ISensor.h"
 
 class MockSensor : public ISensor {
 public:
-    void init() override;
-    SensorData read() override;
-    void setTestData(const SensorData& data);
-    ~MockSensor() override = default;
+    void init() override {}
+    SensorData read() override { return data; }
+
+    void setTestData(const SensorData& testData) {
+        data = testData;
+    }
+
 private:
-    SensorData mockData;
+    SensorData data;
 };
 
-#endif
+#endif // MOCKSENSOR_H
