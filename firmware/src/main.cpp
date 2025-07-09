@@ -5,6 +5,7 @@
 #include "SensorManager.h"
 #include "sensors/PIRSensor.h"
 #include "sensors/BH1750Sensor.h"
+#include "sensors/BME280Sensor.h"
 
 SensorManager* manager;
 bool lastMotion = false;
@@ -14,9 +15,10 @@ void setup() {
     display::init();
     display::show_splash("Booting...\nSystem Initialising...");
 
-    static PIRSensor pir;
-    static BH1750Sensor light;
-    static std::vector<ISensor*> sensors = { &pir, &light };
+    static PIRSensor pir; // PIR sensor for motion detection
+    static BH1750Sensor light; // Light sensor for ambient light level
+    static BME280Sensor bme280;  // Sensor for temperature, humidity, and pressure
+    static std::vector<ISensor*> sensors = { &pir, &light, &bme280 };
 
     static SensorManager mgr(sensors);
     manager = &mgr;

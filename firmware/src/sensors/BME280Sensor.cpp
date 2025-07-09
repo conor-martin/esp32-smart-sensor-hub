@@ -1,12 +1,15 @@
+// src/sensors/BME280Sensor.cpp
+
 #include "sensors/BME280Sensor.h"
-#include <Arduino.h>  // For Serial debug prints
+#include <Arduino.h>
 
 void BME280Sensor::init() {
-    // In real code, initialize I2C and sensor here
-    // e.g., isInitialized = bme.begin(0x76);
-
-    Serial.println("[BME280Sensor] init called (stub)");
+    if (!bme.begin(0x76)) {
+        Serial.println("[BME280Sensor] Failed to initialize!");
+        return;
+    }
     isInitialized = true;
+    Serial.println("[BME280Sensor] Initialized at 0x76");
 }
 
 SensorData BME280Sensor::read() {
@@ -17,13 +20,10 @@ SensorData BME280Sensor::read() {
         return data;
     }
 
-    // In real code, read from BME280
-    // e.g., data.temperature = bme.readTemperature();
-
-    data.temperature = 23.4f;
-    data.humidity = 45.6f;
-    data.pressure = 1012.3f;
-
-    Serial.println("[BME280Sensor] Returning fake data");
+    data.temperature = bme.readTemperature();
+    data.humidity = bme.readHumidity();
+    data.pressure = bme.readPressure() / 100.0F; // hPa
+    Serial.printf("[BME280Sensor] Temp: %.2f°C, Hum: %.1f%%, Pressure: %.1f hPa\n",
+                  data.temperature, data.humidity, data.pressure);
     return data;
 }

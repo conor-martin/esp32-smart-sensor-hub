@@ -37,12 +37,22 @@ namespace display {
         oled.print(data.lightLevel);
         oled.println(" lux");
 
+        oled.print("Temp: ");
+        oled.print(data.temperature);
+        oled.println(" C");
+        oled.print("Humidity: ");
+        oled.print(data.humidity);
+        oled.println(" %");
+        oled.print("Pressure: ");
+        oled.print(data.pressure);
+        oled.println(" hPa");
+
         oled.display();
     }
 
     void show_splash(const char* message) {
         oled.clearDisplay();
-        oled.setTextSize(2);
+        oled.setTextSize(1);
         oled.setCursor(0, 0);
         oled.setTextColor(SSD1306_WHITE);
         oled.println(message);

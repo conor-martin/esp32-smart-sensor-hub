@@ -1,6 +1,8 @@
-#pragma once
+// include/sensors/BME280Sensor.h
 
+#pragma once
 #include "interfaces/ISensor.h"
+#include <Adafruit_BME280.h>
 
 class BME280Sensor : public ISensor {
 public:
@@ -9,7 +11,6 @@ public:
     ~BME280Sensor() override = default;
 
 private:
-    // Replace with actual sensor library object later
-    // e.g., Adafruit_BME280 bme;
+    Adafruit_BME280 bme;
     bool isInitialized = false;
 };
