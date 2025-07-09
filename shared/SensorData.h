@@ -1,4 +1,4 @@
-// include/SensorData.h
+// shared/SensorData.h
 #pragma once
 
 struct SensorData {

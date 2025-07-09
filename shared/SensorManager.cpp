@@ -1,4 +1,4 @@
-// src/SensorManager.cpp
+// shared/SensorManager.cpp
 #include "SensorManager.h"
 
 SensorManager::SensorManager(const std::vector<ISensor*>& sensors)

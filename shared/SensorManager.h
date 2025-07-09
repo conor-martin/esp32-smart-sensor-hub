@@ -1,4 +1,4 @@
-// include/SensorManager.h
+// shared/SensorManager.h
 #pragma once
 #include "interfaces/ISensor.h"
 #include <vector>

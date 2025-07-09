@@ -1,7 +1,7 @@
-// include/interfaces/ISensor.h
+// shared/interfaces/ISensor.h
 #pragma once
 
-#include "SensorData.h"
+#include "../SensorData.h"
 
 class ISensor {
 public:
