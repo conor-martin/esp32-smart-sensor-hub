@@ -8,6 +8,7 @@
 namespace display {
     void init();
     void update(const SensorData& data);
+    void show_splash(const char* message);  // New
 }
 
 #endif

@@ -2,25 +2,40 @@
 #include "sensors/PIRSensor.h"
 #include <Arduino.h>  // For Serial debug prints
 
-void PIRSensor::init() {
-    // In real code, initialize I2C and sensor here
-    // e.g., isInitialized = pir.begin();
+namespace {
+    constexpr int PIR_PIN = 14;  // Adjust this if needed
+    constexpr unsigned long MOTION_HOLD_TIME = 3000;  // ms
+}
 
-    Serial.println("[PIRSensor] init called (stub)");
+void PIRSensor::init() {
+    pinMode(PIR_PIN, INPUT);
+    delay(1000);  // Allow voltage to settle — increase this if needed
     isInitialized = true;
+    Serial.println("[PIRSensor] Initialized on pin 14");
 }
 
 SensorData PIRSensor::read() {
     SensorData data;
+
     if (!isInitialized) {
         Serial.println("[PIRSensor] Not initialized!");
         return data;
     }
+    
+    int state = digitalRead(PIR_PIN);
+    unsigned long now = millis();
 
-    // In real code, read from PIR sensor
-    // e.g., data.motionDetected = pir.detectMotion();
-    data.motionDetected = false; // stub value
+    // debounce logic
+    if (state == HIGH) {
+        motionState = true;
+        lastTriggerTime = now;
+    }
 
-    Serial.println("[PIRSensor] Returning fake data");
+    if (motionState && (now - lastTriggerTime > MOTION_HOLD_TIME)) {
+        motionState = false;  // Reset after hold time
+    }
+
+    data.motionDetected = motionState;
+    Serial.printf("[PIRSensor] Motion: %s\n", motionState ? "YES" : "NO");
     return data;
 }

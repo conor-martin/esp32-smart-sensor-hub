@@ -9,7 +9,7 @@ public:
     ~PIRSensor() override = default;
 
 private:
-    // Replace with actual sensor library object later
-    // e.g., PIR pir;
     bool isInitialized = false;
+    bool motionState = false;
+    unsigned long lastTriggerTime = 0;
 };
