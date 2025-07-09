@@ -18,15 +18,21 @@ This project is built for clarity, modularity, and testability:
 esp32-smart-sensor-hub/
 ├── firmware/              # ESP32 PlatformIO project (Arduino framework)
 │   ├── src/               # Embedded logic (sensors, display, etc.)
-│   ├── include/           # Shared headers
+│   ├── include/           # Firmware-specific headers
 │   ├── lib/               # Optional component libraries
 │   └── platformio.ini     # ESP32 config
 │
 ├── native-tests/          # PlatformIO project for native unit testing
 │   ├── src/               # Testable modules (mock implementations, logic)
-│   ├── include/           # Shared interfaces and test headers
+│   ├── include/           # Test-specific headers
 │   ├── test/              # Unity-based test cases
 │   └── platformio.ini     # Native test config
+│
+├── shared/                # Shared modules used by both firmware and tests
+│   ├── interfaces/        # Common interfaces (ISensor, etc.)
+│   ├── SensorManager.h    # Shared sensor management logic
+│   ├── SensorManager.cpp  # 
+│   └── SensorData.h       # Common data structures
 ```
 
 ---
