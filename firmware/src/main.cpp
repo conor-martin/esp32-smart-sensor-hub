@@ -4,6 +4,7 @@
 #include "display.h"
 #include "SensorManager.h"
 #include "sensors/PIRSensor.h"
+#include "sensors/BH1750Sensor.h"
 
 SensorManager* manager;
 bool lastMotion = false;
@@ -11,10 +12,11 @@ bool lastMotion = false;
 void setup() {
     Serial.begin(115200);
     display::init();
-    display::show_splash("Booting...\nPIR Initialising");
+    display::show_splash("Booting...\nSystem Initialising...");
 
     static PIRSensor pir;
-    static std::vector<ISensor*> sensors = { &pir };
+    static BH1750Sensor light;
+    static std::vector<ISensor*> sensors = { &pir, &light };
 
     static SensorManager mgr(sensors);
     manager = &mgr;
@@ -24,7 +26,7 @@ void setup() {
     }
     
     display::show_splash("System Ready!");
-    delay(1000);  // show message for 1s before updating normally
+    delay(2000);  // show message for 2s before updating normally
 }
 
 void loop() {

@@ -9,7 +9,7 @@ namespace {
 
 void PIRSensor::init() {
     pinMode(PIR_PIN, INPUT);
-    delay(1000);  // Allow voltage to settle — increase this if needed
+    delay(10000);  // Allow voltage to settle — increase this if needed
     isInitialized = true;
     Serial.println("[PIRSensor] Initialized on pin 14");
 }

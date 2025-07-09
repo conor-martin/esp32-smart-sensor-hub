@@ -33,12 +33,16 @@ namespace display {
         oled.print("Motion: ");
         oled.println(data.motionDetected ? "YES" : "NO");
 
+        oled.print("Light: ");
+        oled.print(data.lightLevel);
+        oled.println(" lux");
+
         oled.display();
     }
 
     void show_splash(const char* message) {
         oled.clearDisplay();
-        oled.setTextSize(1);
+        oled.setTextSize(2);
         oled.setCursor(0, 0);
         oled.setTextColor(SSD1306_WHITE);
         oled.println(message);
