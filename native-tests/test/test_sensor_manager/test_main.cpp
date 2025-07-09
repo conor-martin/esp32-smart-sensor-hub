@@ -1,42 +1,47 @@
 #include <unity.h>
-#include "SensorManager.cpp"
 #include "SensorManager.h"
 #include "MockSensor.h"
+#include "../../src/MockSensor.cpp"
+#include "../../firmware/src/SensorManager.cpp"
 
-MockSensor mockPir, mockEnv, mockLight;
+
+MockSensor* pir;
+MockSensor* env;
+MockSensor* light;
 SensorManager* manager;
 
-
 void setUp() {
-    SensorData pir = { true, 0, 0, 0, 0 };
-    SensorData env = { false, 21.5f, 40.0f, 1012.0f, 0 };
-    SensorData light = { false, 0, 0, 0, 150.0f };
+    pir = new MockSensor();
+    env = new MockSensor();
+    light = new MockSensor();
 
-    mockPir.setTestData(pir);
-    mockEnv.setTestData(env);
-    mockLight.setTestData(light);
+    pir->setTestData({ .motionDetected = true });
+    light->setTestData({ .lightLevel = 123.4f });
+    env->setTestData({ .temperature = 24.0f, .humidity = 50.0f, .pressure = 1010.0f });
 
-    std::vector<ISensor*> sensors = { &mockPir, &mockEnv, &mockLight };
+    std::vector<ISensor*> sensors = { pir, light, env };
     manager = new SensorManager(sensors);
 }
 
 void tearDown() {
+    delete pir;
+    delete env;
+    delete light;
     delete manager;
 }
 
-void test_sensor_manager_aggregates_data() {
-    SensorData result = manager->read_all();
+void test_sensor_manager_reads_all() {
+    SensorData data = manager->read_all();
 
-    TEST_ASSERT_TRUE(result.motionDetected);
-    TEST_ASSERT_EQUAL_FLOAT(21.5f, result.temperature);
-    TEST_ASSERT_EQUAL_FLOAT(40.0f, result.humidity);
-    TEST_ASSERT_EQUAL_FLOAT(1012.0f, result.pressure);
-    TEST_ASSERT_EQUAL_FLOAT(150.0f, result.lightLevel);
+    TEST_ASSERT_TRUE(data.motionDetected);
+    TEST_ASSERT_FLOAT_WITHIN(0.01, 123.4f, data.lightLevel);
+    TEST_ASSERT_FLOAT_WITHIN(0.01, 24.0f, data.temperature);
+    TEST_ASSERT_FLOAT_WITHIN(0.01, 50.0f, data.humidity);
+    TEST_ASSERT_FLOAT_WITHIN(0.01, 1010.0f, data.pressure);
 }
 
-int main(int argc, char **argv) {
+int main(int argc, char** argv) {
     UNITY_BEGIN();
-    RUN_TEST(test_sensor_manager_aggregates_data);
+    RUN_TEST(test_sensor_manager_reads_all);
     return UNITY_END();
 }
-

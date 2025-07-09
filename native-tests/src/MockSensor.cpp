@@ -5,9 +5,9 @@ void MockSensor::init() {
 }
 
 SensorData MockSensor::read() {
-    return data;
+    return mockData;
 }
 
-void MockSensor::setTestData(const SensorData& testData) {
-    data = testData;
+void MockSensor::setTestData(const SensorData& data) {
+    mockData = data;
 }

@@ -1,5 +1,6 @@
 #include <unity.h>
 #include "MockSensor.h"
+#include "../../src/MockSensor.cpp"
 
 void setUp(void) {}     // Unity expects this
 void tearDown(void) {}  // Unity expects this
