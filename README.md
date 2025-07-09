@@ -75,4 +75,4 @@ MIT License – see [LICENSE](LICENSE) for details.
 ## 👤 Author
 
 **Conor Martin**  
-[GitHub](https://github.com/conormartin) | [LinkedIn](https://www.linkedin.com/in/conormartin)
+[GitHub](https://github.com/conor-martin) | [LinkedIn](https://www.linkedin.com/in/conor-martin)
