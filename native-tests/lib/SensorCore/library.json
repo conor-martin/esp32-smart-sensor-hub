@@ -1,0 +1,20 @@
+{
+    "name": "SensorCore",
+    "version": "1.0.0",
+    "description": "Shared sensor management components for ESP32 Smart Sensor Hub testing",
+    "keywords": ["sensor", "management", "testing"],
+    "authors": [
+        {
+            "name": "ESP32 Smart Sensor Hub Project"
+        }
+    ],
+    "license": "MIT",
+    "frameworks": ["arduino"],
+    "platforms": ["native"],
+    "export": {
+        "include": [
+            "*.h",
+            "*.cpp"
+        ]
+    }
+}

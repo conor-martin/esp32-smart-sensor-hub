@@ -1,6 +1,6 @@
 // include/sensors/PIRSensor.h
 #pragma once
-#include "interfaces/ISensor.h"
+#include <ISensor.h>
 
 class PIRSensor : public ISensor {
 public:

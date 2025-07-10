@@ -1,7 +1,7 @@
 // include/sensors/BME280Sensor.h
 
 #pragma once
-#include "interfaces/ISensor.h"
+#include <ISensor.h>
 #include <Adafruit_BME280.h>
 
 class BME280Sensor : public ISensor {

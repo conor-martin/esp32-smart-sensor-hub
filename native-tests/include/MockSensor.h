@@ -1,6 +1,6 @@
 #pragma once
-#include "SensorData.h"
-#include "interfaces/ISensor.h"
+#include <SensorData.h>
+#include <ISensor.h>
 
 class MockSensor : public ISensor {
 public:

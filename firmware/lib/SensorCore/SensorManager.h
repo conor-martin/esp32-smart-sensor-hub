@@ -1,6 +1,6 @@
-// shared/SensorManager.h
+// SensorManager.h
 #pragma once
-#include "interfaces/ISensor.h"
+#include "ISensor.h"
 #include <vector>
 
 class SensorManager {

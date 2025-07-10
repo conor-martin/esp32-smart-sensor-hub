@@ -2,7 +2,7 @@
 
 #include <Arduino.h>
 #include "display.h"
-#include "SensorManager.h"
+#include <SensorManager.h>
 #include "sensors/PIRSensor.h"
 #include "sensors/BH1750Sensor.h"
 #include "sensors/BME280Sensor.h"
