@@ -1,8 +1,6 @@
 #include <unity.h>
-#include "SensorManager.h"
+#include <SensorManager.h>
 #include "MockSensor.h"
-#include "../../src/MockSensor.cpp"
-#include "../../firmware/src/SensorManager.cpp"
 
 
 MockSensor* pir;

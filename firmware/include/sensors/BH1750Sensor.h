@@ -1,7 +1,7 @@
 // include/sensors/BH1750Sensor.h
 
 #pragma once
-#include "interfaces/ISensor.h"
+#include <ISensor.h>
 
 class BH1750Sensor : public ISensor {
 public:
